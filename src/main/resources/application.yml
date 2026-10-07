@@ -1,0 +1,54 @@
+spring:
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password: 123456
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver #mysql驱动类
+    url: jdbc:mysql://localhost:3307/volunteer?serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: 1234
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true #开启驼峰-→下划线 命名映射
+
+
+
+embedding-model: #配置向量模型
+  base-url:     https://dashscope.aliyuncs.com/compatible-mode/v1
+  api-key: sk-2b2747e2ae6c41718405c763108e157a
+  model-name: text-embedding-v3 #向量模型名，通用文本向量v3
+  log-requests: true
+  log-responses: true
+  max-segments-per-batch: 10
+
+
+langchain4j:    #是框架的根配置节点，表明后续配置属于相关设置。
+  open-ai:       #子节点，指定配置的是 OpenAI 兼容的模型服务
+    chat-model:    #表示配置的是聊天模型相关参数
+      base-url: https://ws-p5qargteh8wxvi9d.cn-beijing.maas.aliyuncs.com/compatible-mode/v1
+      #聊天模型的 API 基础地址
+      api-key: sk-ws-H.RYPMIEX.ncyB.MEUCIDdSaXMstgBfsnQ4fTU7vosHZIITQKEqDj7WMoFw0qycAiEA0qExZDgV1cjtLN8EaOe9IfYqzcgVzz4sWDtDsyy8kFM
+      #访问该 API 服务的身份验证密钥
+      model-name: qwen3.8-27b    #指定具体模型名称
+      logging:
+        log-requests: true
+        log-responses: true
+    streaming-chat-model: #表示配置的是聊天模型相关参数
+      base-url: https://ws-p5qargteh8wxvi9d.cn-beijing.maas.aliyuncs.com/compatible-mode/v1
+      #聊天模型的 API 基础地址
+      api-key: sk-ws-H.RYPMIEX.ncyB.MEUCIDdSaXMstgBfsnQ4fTU7vosHZIITQKEqDj7WMoFw0qycAiEA0qExZDgV1cjtLN8EaOe9IfYqzcgVzz4sWDtDsyy8kFM
+      #访问该 API 服务的身份验证密钥
+      model-name: qwen3.8-27b    #指定具体模型名称
+      logging:
+        log-requests: true
+        log-responses: true
+  community:
+    redis:
+      host: localhost
+      port: 6379
+
+logging:
+  level:
+    dev.langchain4j: debug
